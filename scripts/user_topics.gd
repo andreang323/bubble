@@ -1,14 +1,16 @@
 extends Node
 
 enum Topics {CULT, ROBOTS, DOG}
-enum Tone {CASUAL, SEMICASUAL, SERIOUS}
-enum Flavor {GREET, SIGNOFF}
 # TONE INDICES: 0- CASUAL, 1- SEMI-CASUAL, 2- SERIOUS
-var topics = {Topics.CULT : cultTopics}
-var cultTopics = [cultExist]
-var cultExist = {Tone.CASUAL : cultExistCasual}
+#enum Tone {CASUAL, SEMICASUAL, SERIOUS}
+enum Parts {SENDER, SUBJECT, GREET, CONTENT, SIGNOFF}
 
-var toneFlavor = {Tone.CASUAL : {Flavor.GREET : casualGreets, Flavor.SIGNOFF : casualSignoffs}}
-var cultExistCasual = ["omg i can't believe they're real omgomg", "looking 4 cult member 2 interview"]
-var casualGreets = ["hello friend", "hey everyone", "hi guys", "whassup y'all"]
-var casualSignoffs = ["peace out", "you're's sincerely", "bye bye", "thank u"]
+const user_topics = {
+	Topics.CULT: {
+		Parts.SENDER: ["john@notacult.net", "joe@societyforfreedom.co.us"],
+		Parts.SUBJECT: ["Normal Organization Recruiting", "Free Pizza for Cult Members"],
+		Parts.GREET: ["hello friend", "hey everyone", "hi guys", "whassup y'all"],
+		Parts.CONTENT: ["omg i can't believe they're real omgomg", "looking 4 cult member 2 interview"],
+		Parts.SIGNOFF: ["peace out", "you're's sincerely", "bye bye", "thank u"],
+	}
+}
