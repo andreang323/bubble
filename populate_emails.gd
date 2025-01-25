@@ -2,6 +2,8 @@ extends Tree
 
 @export var texture: Texture2D
 
+const EmailGenerator = preload("res://scripts/email.gd")
+
 var egen = EmailGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
