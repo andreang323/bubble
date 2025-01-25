@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci2dkajgn7g8r"]
+
+[ext_resource type="Texture2D" uid="uid://bu0ksbo580q4u" path="res://Images/bubble.png" id="1_86l40"]
+[ext_resource type="Script" path="res://scripts/launcher.gd" id="1_kl71i"]
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="3_gblfn"]
+[ext_resource type="Texture2D" uid="uid://dgdhox5hooehm" path="res://Images/sky.png" id="4_ld8su"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kl71i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 150.0
+offset_bottom = 153.0
+texture = ExtResource("1_86l40")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Window" type="Window" parent="."]
+title = "Bubble Email Moderator Client"
+position = Vector2i(50, 200)
+size = Vector2i(1000, 300)
+min_size = Vector2i(100, 0)
+theme = ExtResource("3_gblfn")
+
+[node name="TextureRect" type="TextureRect" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ld8su")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Window/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("1_86l40")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Window/TextureRect/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Welcome to the Bubble Email Moderator Client! Your job is to send helpful information to users who seem to be having some trouble being stuck in filter bubbles! By sending affected users the right information, you'll help them widen their perspective.
+
+But be warned: recipients of these emails are also at risk of becoming trapped in a bubble, so double-click on users in the recipients field to add them to the list of flagged users. Your shift ends when we detect that more than 100 users have become trapped in a bubble, or if you successfully resolve all cases. Good luck!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/TextureRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="Window/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Start"
+
+[node name="Quit" type="Button" parent="Window/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Quit"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Hub" type="Window" parent="."]
+initial_position = 4
+theme = ExtResource("3_gblfn")
+
+[node name="TextureRect" type="TextureRect" parent="Hub"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_86l40")
+
+[connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="pressed" from="Window/TextureRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
