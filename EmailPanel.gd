@@ -1,8 +1,7 @@
-class_name EmailPanel
-
 extends Window
 
 var subject: String
+var recipients: PackedStringArray
 var sender: String
 var content: String
 
@@ -13,8 +12,10 @@ var content: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print($PanelContainer/VBoxContainer/subject)
+	position.x = randi_range(0, 20) + 3
+	position.y = randi_range(0, 20) + 21
 	$PanelContainer/VBoxContainer/subject.text = subject
+	$PanelContainer/VBoxContainer/recipients.text = ", ".join(recipients)
 	$PanelContainer/VBoxContainer/sender.text = sender
 	$PanelContainer/VBoxContainer/content.text = content
 
@@ -22,3 +23,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_close_requested() -> void:
+	queue_free()

@@ -27,6 +27,7 @@ func _on_item_selected() -> void:
 	var selected = emails[selected_id]
 	var panel = email_panel.instantiate()
 	panel.subject = selected.subject
+	panel.recipients = selected.recipients
 	panel.sender = selected.sender
 	panel.content = selected.content
-	add_child(panel)# Replace with function body.
+	add_child(panel)
