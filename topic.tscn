@@ -22,3 +22,4 @@ select_mode = 1
 script = ExtResource("2_vhns5")
 
 [connection signal="cell_selected" from="Emails" to="Emails" method="_on_cell_selected"]
+[connection signal="item_selected" from="Emails" to="Emails" method="_on_item_selected"]
