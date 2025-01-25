@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://5iunlah25ys3"]
+
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yt31p"]
+[ext_resource type="Script" path="res://populate_emails.gd" id="2_04jek"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yt31p")
+
+[node name="Window" type="Window" parent="."]
+title = "Email"
+position = Vector2i(71, 66)
+size = Vector2i(764, 348)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tree" type="Tree" parent="Window/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_04jek")

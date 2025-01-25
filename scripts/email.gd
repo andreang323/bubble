@@ -1,4 +1,4 @@
-class_name email
+class_name EmailGenerator
 
 extends "res://scripts/user_topics.gd"
 
