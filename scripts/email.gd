@@ -1,23 +1,23 @@
 class_name email
 
-extends Control
+extends "res://scripts/user_topics.gd"
 
 var id = "testuser@wand.com"
 var rec = ["testuser2@wand.com", "testuser3@wand.com"]
-enum Topics {CULT, ROBOTS, DOG}
 var topic = Topics.CULT
-var subtopic = 1
+var subtopic = 0
 var greets = "hello friend"
 var content = "today i bring you news of cult."
 var signoff = "thank u :D"
-var tone = "casual"
+var tone = Tone.CASUAL
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	generateContent()
+	print(greets + content + signoff)
 
 func generateContent():
-	subtopic = randi_range(0, 2)
-	greets = "pick me from array based on tone"
-	content = "pick me based on subtopic of topic"
-	signoff = "pick me from array based on tone"
+	subtopic = randi_range(0, 0)
+	greets = toneFlavor[tone][Flavor.GREET]
+	content = topics[topic][subtopic][tone]
+	signoff = toneFlavor[tone][Flavor.SIGNOFF]
