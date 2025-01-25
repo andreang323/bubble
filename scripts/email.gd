@@ -1,4 +1,4 @@
-class_name EmailGenerator
+class_name email
 
 extends "res://scripts/user_topics.gd"
 
@@ -12,9 +12,9 @@ var signoff = "thank u :D"
 var tone = Tone.CASUAL
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func new() -> void:
 	generateContent()
-	print(greets + content + signoff)
+	#print(greets + content + signoff)
 
 func generateContent():
 	subtopic = randi_range(0, 0)

@@ -1,16 +1,17 @@
 extends Tree
 
-@export var texture: Texture2D
-
-const EmailGenerator = preload("res://scripts/email.gd")
-
-var egen = EmailGenerator.new()
+var emails: Array[email]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	EmailGenerator.new()
-	var child = create_item()
-	child.set_text(0, "cult1")
+	var root = create_item()
+	for n in range(5):
+		emails.append(email.new())
+	for email in emails:
+		var item = create_item(root)
+		# item.set_icon(0)
+		item.set_text(1, email.greets)
+		item.set_text(2, "fish@fish.com")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
