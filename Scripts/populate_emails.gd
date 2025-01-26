@@ -126,3 +126,6 @@ func _panel_closed(sender: String) -> void:
 
 func _update_title() -> void:
 	$Window.title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic] + " (" + str(len(infection_items)) + ")"
+
+func _on_visibility_changed() -> void:
+	$Window.visible = visible

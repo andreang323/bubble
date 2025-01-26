@@ -8,7 +8,7 @@ class_name UserTopics
 enum Parts {GREET, TOPIC, RESPONSES, SIGNOFF}
 enum Topics {CULT, ROBOTS, DOG}
 enum Content {SUBJECT, MESSAGE, ANSWER}
-enum Response {VALID, UNSUBSTANTIATED, MISINFO}
+enum Response {VALID, MISINFO, SCAM}
 
 const TOPIC_TO_STRING = {
 	Topics.CULT: "Cult",
@@ -29,13 +29,28 @@ const USER_TOPICS = {
 			{
 				Content.SUBJECT: "O_O omg cult real?!?1!?",
 				Content.MESSAGE: "omg i can't believe they're real omgomg",
-				Content.ANSWER: Response.UNSUBSTANTIATED
+				Content.ANSWER: Response.MISINFO
+			},
+			{
+				Content.SUBJECT: "What's up with this cult stuff",
+				Content.MESSAGE: "I keep getting spammed about it? Know what's up?",
+				Content.ANSWER: Response.VALID
 			},
 			{
 				Content.SUBJECT: "Lucrative Job Opporunity",
 				Content.MESSAGE: "looking 4 cult member 2 interview",
 				Content.ANSWER: Response.MISINFO
-			}
+			},
+			{
+				Content.SUBJECT: "Make INFINITE Money with This One SIMPLE Trick",
+				Content.MESSAGE: "Our very legitimate pyramid-shaped organization is looking for new... business partners... to pay us money. Would you be interested in this great opportunity?",
+				Content.ANSWER: Response.SCAM
+			},
+			{
+				Content.SUBJECT: "Hot Dads in Your Area",
+				Content.MESSAGE: "Click Here! http://moneysteal.er/",
+				Content.ANSWER: Response.SCAM
+			},
 		],
 		Topics.ROBOTS: [
 			{
@@ -47,18 +62,38 @@ const USER_TOPICS = {
 				Content.SUBJECT: "DOG????? T^T",
 				Content.MESSAGE: "HELP THE ROBOTS ATE MY DOG",
 				Content.ANSWER: Response.VALID,
+			},
+			{
+				Content.SUBJECT: "I LOVE Robots",
+				Content.MESSAGE: "OMG Robots are SOOOOOO cooooool literally Miku moment",
+				Content.ANSWER: Response.VALID,
+			},
+			{
+				Content.SUBJECT: "Praise our AI Overlords!!!!",
+				Content.MESSAGE: "Priase be to god-emperor and very attractive man Sam Altman and his cool robot that he made alone with no help.",
+				Content.ANSWER: Response.MISINFO,
 			}
 		],
 		Topics.DOG: [
 			{
 				Content.SUBJECT: "Tragic News: Dog Found...",
-				Content.MESSAGE: "the dog",
-				Content.ANSWER: Response.UNSUBSTANTIATED,
+				Content.MESSAGE: "to be a dog",
+				Content.ANSWER: Response.VALID,
+			},
+			{
+				Content.SUBJECT: "Tragic News: Dog Found...",
+				Content.MESSAGE: "it's my dog now.",
+				Content.ANSWER: Response.MISINFO,
 			},
 			{
 				Content.SUBJECT: "DOG????? T^T",
 				Content.MESSAGE: "DOG IS GONE HELP",
 				Content.ANSWER: Response.VALID,
+			},
+			{
+				Content.SUBJECT: "Pay us Money and We'll Find Your Dog",
+				Content.MESSAGE: "Give us money and we'll find your dog. Remember that if you don't we'll \"unfind\" it for you.",
+				Content.ANSWER: Response.SCAM,
 			}
 		],
 	},
