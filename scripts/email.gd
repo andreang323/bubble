@@ -21,5 +21,5 @@ func generateContent(sender: String):
 	self.sender = sender
 	subject = user_topics[topic][Parts.SUBJECT].pick_random()
 	greet = user_topics[topic][Parts.GREET].pick_random()
-	content = user_topics[topic][Parts.CONTENT].pick_random()
+	content = user_topics[topic][Parts.CONTENT].pick_random()[Content.MESSAGE]
 	signoff = user_topics[topic][Parts.SIGNOFF].pick_random()
