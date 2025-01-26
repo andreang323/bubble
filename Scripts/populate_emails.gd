@@ -71,7 +71,8 @@ func _on_emails_item_selected() -> void:
 		panel.subject = selected.subject
 		panel.recipients = selected.recipients
 		panel.sender = selected.sender
-		panel.content = selected.content
+		panel.content = "\n".join([selected.greet, selected.content, selected.signoff])
+		panel.correct = selected.correct
 		panel.wrong_answer.connect(_on_wrong_answer)
 		panel.correct_answer.connect(_on_correct_answer)
 		panel.closed.connect(_panel_closed)

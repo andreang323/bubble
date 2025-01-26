@@ -9,6 +9,7 @@ var subject: String
 var greet: String
 var content: String
 var signoff: String
+var correct: Response
 
 # Called when the node enters the scene tree for the first time.
 func _init(sender: String, topic: Topics) -> void:
@@ -23,4 +24,5 @@ func generateContent():
 	var body = USER_TOPICS[Parts.TOPIC][topic].pick_random()
 	subject = body[Content.SUBJECT]
 	content = body[Content.MESSAGE]
+	correct = body[Content.ANSWER]
 	signoff = USER_TOPICS[Parts.SIGNOFF].pick_random()

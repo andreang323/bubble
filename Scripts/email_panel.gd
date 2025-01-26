@@ -43,6 +43,12 @@ func _on_button_pressed(button: String) -> void:
 		$Report.show()
 		$Report/Timer.start()
 		await sent
+	#const RESPONSE_TO_STRING = {
+	#	UserTopics.Response.VALID: "valid",
+	#	UserTopics.Response.UNSUBSTANTIATED: "unsub",
+	#	UserTopics.Response.MISINFO: "misinfo",
+	#}
+	#print(button, RESPONSE_TO_STRING[correct])
 	if button == "valid" and correct == UserTopics.Response.VALID or \
 	button == "unsub" and correct == UserTopics.Response.UNSUBSTANTIATED or \
 	button == "misinfo" and correct == UserTopics.Response.MISINFO:

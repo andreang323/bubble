@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yh1l6"]
 [ext_resource type="Script" path="res://Scripts/populate_emails.gd" id="2_vhns5"]
-[ext_resource type="Script" path="res://wrong_answer_popup.gd" id="3_ie8ar"]
+[ext_resource type="Script" path="res://Scripts/wrong_answer_popup.gd" id="3_ie8ar"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
