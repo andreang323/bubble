@@ -1,6 +1,6 @@
 class_name Email
 
-extends "res://scripts/user_topics.gd"
+extends UserTopics
 
 var topic = Topics.CULT
 var recipients: PackedStringArray = PackedStringArray()
@@ -20,7 +20,7 @@ func generateContent(sender: String):
 	for n in randi_range(1, 3):
 		recipients.append(DummyEmailAddr.make_email())
 	self.sender = sender
-	subject = user_topics[topic][Parts.SUBJECT].pick_random()
-	greet = user_topics[topic][Parts.GREET].pick_random()
-	content = user_topics[topic][Parts.CONTENT].pick_random()[Content.MESSAGE]
-	signoff = user_topics[topic][Parts.SIGNOFF].pick_random()
+	subject = USER_TOPICS[topic][Parts.SUBJECT].pick_random()
+	greet = USER_TOPICS[topic][Parts.GREET].pick_random()
+	content = USER_TOPICS[topic][Parts.CONTENT].pick_random()[Content.MESSAGE]
+	signoff = USER_TOPICS[topic][Parts.SIGNOFF].pick_random()

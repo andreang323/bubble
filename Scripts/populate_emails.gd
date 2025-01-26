@@ -3,7 +3,7 @@ extends Tree
 @export var infection_time = 5.0
 @export var infection_variance = 3.0
 
-var email_panel = preload("res://EmailPanel.tscn")
+var email_panel = preload("res://email_panel.tscn")
 var root
 var topic = 0
 var infected: Dictionary

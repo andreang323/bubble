@@ -1,5 +1,7 @@
 extends Node
 
+class_name UserTopics
+
 enum Topics {CULT, ROBOTS, DOG}
 # TONE INDICES: 0- CASUAL, 1- SEMI-CASUAL, 2- SERIOUS
 #enum Tone {CASUAL, SEMICASUAL, SERIOUS}
@@ -12,7 +14,7 @@ enum Responses {GOOD, BAD}
 # RESPONSES SHOULD BE INDEPENDENT OF CONTENT
 # CONTENT SHOULD BE DEPENDENT ON SUBTOPIC
 
-const user_topics = {
+const USER_TOPICS = {
 	Topics.CULT: {
 		Parts.SENDER: ["john@notacult.net", "joe@societyforfreedom.co.us"],
 		Parts.SUBJECT: ["Normal Organization Recruiting", "Free Pizza for Cult Members"],

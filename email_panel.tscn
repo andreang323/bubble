@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmk7kluu1rqqq"]
 
-[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_6ke6i"]
-[ext_resource type="Script" path="res://EmailPanel.gd" id="2_573hf"]
-[ext_resource type="Texture2D" uid="uid://ddemdfibjshgw" path="res://Images/fill.png" id="3_bb3v0"]
+[ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_y1eer"]
+[ext_resource type="Script" path="res://Scripts/email_panel.gd" id="2_8r8xd"]
+[ext_resource type="Texture2D" uid="uid://ddemdfibjshgw" path="res://Images/fill.png" id="3_4nokx"]
 
 [node name="Email" type="Window"]
 title = "subject - sender"
@@ -10,8 +10,8 @@ position = Vector2i(3, 22)
 size = Vector2i(480, 480)
 min_size = Vector2i(480, 150)
 keep_title_visible = true
-theme = ExtResource("1_6ke6i")
-script = ExtResource("2_573hf")
+theme = ExtResource("1_y1eer")
+script = ExtResource("2_8r8xd")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
@@ -80,7 +80,7 @@ text = "subject"
 [node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-texture = ExtResource("3_bb3v0")
+texture = ExtResource("3_4nokx")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10

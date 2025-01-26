@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DummyEmailAddr="*res://dummy_email_addr.gd"
+DummyEmailAddr="*res://Scripts/dummy_email_addr.gd"
 
 [rendering]
 
