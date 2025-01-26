@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://5iunlah25ys3"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yt31p"]
-[ext_resource type="Script" path="res://populate_emails.gd" id="2_04jek"]
 [ext_resource type="Texture2D" uid="uid://cqy3cbucyoosa" path="res://Images/wallpaper.png" id="2_np3an"]
+[ext_resource type="PackedScene" uid="uid://ci2dkajgn7g8r" path="res://launcher.tscn" id="3_6ufeh"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_yt31p")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="DesktopBG" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,22 +23,5 @@ grow_vertical = 2
 texture = ExtResource("2_np3an")
 stretch_mode = 1
 
-[node name="Window" type="Window" parent="."]
-title = "Email"
-position = Vector2i(71, 66)
-size = Vector2i(764, 348)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Window"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Tree" type="Tree" parent="Window/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-columns = 2
-hide_root = true
-select_mode = 1
-script = ExtResource("2_04jek")
+[node name="Launcher" parent="." instance=ExtResource("3_6ufeh")]
+layout_mode = 1

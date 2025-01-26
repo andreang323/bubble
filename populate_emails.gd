@@ -5,6 +5,7 @@ extends Tree
 
 var email_panel = preload("res://EmailPanel.tscn")
 var root
+var topic = 0
 var infected: Dictionary
 var infection_timers: Dictionary
 
@@ -28,19 +29,15 @@ func make_infection_timers(targets: PackedStringArray) -> void:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	root = create_item()
-	var start_vector = Email.new(DummyEmailAddr.make_email())
+	var start_vector = Email.new(DummyEmailAddr.make_email(), topic)
 	infected[start_vector.sender] = start_vector
 	make_email_item(start_vector)
 	make_infection_timers(start_vector.recipients)
 
 func _on_timer_timeout(rec: String) -> void:
-	infected[rec] = Email.new(rec)
+	infected[rec] = Email.new(rec, topic)
 	make_email_item(infected[rec])
 	make_infection_timers(infected[rec].recipients)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_item_selected() -> void:
 	var selected_sender = get_selected().get_text(1)
@@ -51,3 +48,10 @@ func _on_item_selected() -> void:
 	panel.sender = selected.sender
 	panel.content = selected.content
 	add_child(panel)
+	# LINK CHILD SIGNALS TO CORRECT RESPONSE (remove item)
+	# AND WRONG RESPONSE (_on_timer_timeout(rec))
+
+
+func _on_window_close_requested() -> void:
+	get_parent().visible = false
+	

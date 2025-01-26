@@ -11,7 +11,8 @@ var content: String
 var signoff: String
 
 # Called when the node enters the scene tree for the first time.
-func _init(sender: String) -> void:
+func _init(sender: String, topic) -> void:
+	self.topic = topic
 	generateContent(sender)
 	#print(greets + content + signoff)
 

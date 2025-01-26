@@ -8,7 +8,6 @@ mode = 4
 title = "Inbox"
 position = Vector2i(3, 22)
 size = Vector2i(640, 480)
-min_size = Vector2i(300, 0)
 theme = ExtResource("1_yh1l6")
 
 [node name="Emails" type="Tree" parent="."]
@@ -22,5 +21,6 @@ hide_root = true
 select_mode = 1
 script = ExtResource("2_vhns5")
 
+[connection signal="close_requested" from="." to="Emails" method="_on_window_close_requested"]
 [connection signal="cell_selected" from="Emails" to="Emails" method="_on_cell_selected"]
 [connection signal="item_selected" from="Emails" to="Emails" method="_on_item_selected"]
