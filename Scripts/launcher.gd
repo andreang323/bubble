@@ -30,6 +30,7 @@ func _on_start_pressed() -> void:
 	cultop = CultTopic.instantiate()
 	cultop.topic = UserTopics.Topics.CULT
 	cultop.visible = false
+	_on_refresh_timer_timeout()
 	add_child(dogtop)
 	add_child(robtop)
 	add_child(cultop)
@@ -51,3 +52,19 @@ func _on_robot_bubble_gui_input(event: InputEvent) -> void:
 
 
 # GET TOPIC CURRENT SIZE, RESIZE BUBBLES
+func _update_bubbles():
+	var dogsize = len(dogtop.infected) * 2
+	var robsize = len(robtop.infected) * 2
+	# i needed a 7 letter word ok
+	var calzone = len(cultop.infected) * 2
+	$Hub/TextureRect/VBoxContainer/HBoxContainer/Dog/DogBubble.custom_minimum_size = Vector2(100 + dogsize, 100 + dogsize)
+	$Hub/TextureRect/VBoxContainer/HBoxContainer/Robots/RobotBubble.custom_minimum_size = Vector2(100 + robsize, 100 + robsize)
+	$Hub/TextureRect/VBoxContainer/HBoxContainer/Cult/CultBubble.custom_minimum_size = Vector2(100 + calzone, 100 + calzone)
+	if (len(dogtop.infected) + len(robtop.infected) + len(cultop.infected))> 100:
+		print('gameover')
+		# put BSOD or something
+		get_tree().paused = true
+
+func _on_refresh_timer_timeout() -> void:
+	_update_bubbles()
+	$Hub/RefreshTimer.start()

@@ -39,8 +39,8 @@ horizontal_alignment = 1
 [node name="Window" type="Window" parent="."]
 title = "Bubble Email Moderator Client"
 initial_position = 4
-size = Vector2i(1000, 300)
-visible = false
+size = Vector2i(1000, 350)
+unresizable = true
 min_size = Vector2i(100, 0)
 keep_title_visible = true
 theme = ExtResource("3_gblfn")
@@ -51,6 +51,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource("4_ld8su")
 expand_mode = 1
 
@@ -69,6 +71,7 @@ alignment = 1
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 6
 texture = ExtResource("1_86l40")
 expand_mode = 1
 stretch_mode = 4
@@ -77,9 +80,11 @@ stretch_mode = 4
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
-text = "Welcome to the Bubble Email Moderator Client! Your job is to send helpful information to users who seem to be having some trouble being stuck in filter bubbles! By sending affected users the right information, you'll help them widen their perspective.
+text = "Welcome to the Bubble Email Moderator Client!
 
-But be warned: recipients of these emails are also at risk of becoming trapped in a bubble, so double-click on users in the recipients field to add them to the list of flagged users. Your shift ends when we detect that more than 100 users have become trapped in a bubble, or if you successfully resolve all cases. Good luck!"
+Your job is to help users who seem to be stuck in filter bubbles! By identifying whether the information in a user's email is valid, unsubstantiated, or misinformation, our program will send the correct information to the user.
+
+But be warned: recipients of these emails are also at risk of becoming trapped in a bubble, and the longer you take, the more people will be affected. Your shift ends when we detect that more than 100 users have become trapped in a bubble, or if you successfully resolve all cases. Good luck!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
@@ -96,10 +101,6 @@ text = "Start"
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Quit"
-
-[node name="Timer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
 
 [node name="Hub" type="Window" parent="."]
 title = "Topics"
@@ -195,9 +196,13 @@ size_flags_vertical = 8
 text = "Bubble Cult"
 horizontal_alignment = 1
 
+[node name="RefreshTimer" type="Timer" parent="Hub"]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="gui_input" from="VBoxContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="pressed" from="Window/TextureRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog/DogBubble" to="." method="_on_dog_bubble_gui_input"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots/RobotBubble" to="." method="_on_robot_bubble_gui_input"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult/CultBubble" to="." method="_on_cult_bubble_gui_input"]
+[connection signal="timeout" from="Hub/RefreshTimer" to="." method="_on_refresh_timer_timeout"]

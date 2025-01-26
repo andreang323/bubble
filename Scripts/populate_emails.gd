@@ -7,12 +7,18 @@ var email_panel = preload("res://email_panel.tscn")
 @onready var email_tree = $Emails
 var root: TreeItem
 var topic: UserTopics.Topics
+# tracks total users
 var infected: Dictionary
+# tracks reference to items
 var infection_items: Dictionary
+# tracks timers
 var infection_timers: Dictionary
+# tracks currently open emails
+var open: Dictionary
 
 const letter_icon = preload("res://Images/letter.png")
 
+## takes email object and creates item in tree
 func make_email_item(gotmail):
 	var item = email_tree.create_item(root)
 	item.set_icon(0, letter_icon)
@@ -20,6 +26,8 @@ func make_email_item(gotmail):
 	item.set_text(1, gotmail.sender)
 	infection_items[gotmail.sender] = item
 
+## takes list of targets and makes timer for each target
+## also populates list with reference to timers for erasing
 func make_infection_timers(targets: PackedStringArray) -> void:
 	for rec in targets:
 		var timer = Timer.new()
@@ -28,6 +36,7 @@ func make_infection_timers(targets: PackedStringArray) -> void:
 		timer.one_shot = true
 		timer.start()
 		timer.timeout.connect(_on_timer_timeout.bind(rec))
+		infection_timers[rec] = timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,32 +47,74 @@ func _ready() -> void:
 	make_email_item(start_vector)
 	make_infection_timers(start_vector.recipients)
 
+## create new email from recipient upon timeout
 func _on_timer_timeout(rec: String) -> void:
-	infection_timers[rec].stop()
-	infection_timers.erase(rec)
-	infected[rec] = Email.new(rec, topic)
-	make_email_item(infected[rec])
-	make_infection_timers(infected[rec].recipients)
+	if rec in infection_timers:
+		infection_timers[rec].stop()
+		infection_timers.erase(rec)
+		infected[rec] = Email.new(rec, topic)
+		make_email_item(infected[rec])
+		make_infection_timers(infected[rec].recipients)
+	else:
+		# oh god the timer wasn't removed
+		print("oops")
 
+## spawns email panel with correct information
 func _on_emails_item_selected() -> void:
 	var selected_sender = email_tree.get_selected().get_text(1)
-	var selected = infected[selected_sender]
-	var panel = email_panel.instantiate()
-	panel.subject = selected.subject
-	panel.recipients = selected.recipients
-	panel.sender = selected.sender
-	panel.content = selected.content
-	panel.correct_answer.connect()
-	add_child(panel)
-	# LINK CHILD SIGNALS TO CORRECT RESPONSE (remove item)
-	# AND WRONG RESPONSE (_on_timer_timeout(rec))
+	# check if panel already open
+	if selected_sender not in open:
+		var selected = infected[selected_sender]
+		var panel = email_panel.instantiate()
+		open[selected_sender] = panel
+		panel.subject = selected.subject
+		panel.recipients = selected.recipients
+		panel.sender = selected.sender
+		panel.content = selected.content
+		panel.wrong_answer.connect(_on_wrong_answer)
+		panel.correct_answer.connect(_on_correct_answer)
+		panel.closed.connect(_panel_closed)
+		add_child(panel)
+	else:
+		open[selected_sender].grab_focus()
 
-func _on_correct_answer(sender: String) -> void:
-	infected.erase(sender)
-	infection_timers[sender].stop()
-	infection_timers.erase(sender)
-	infection_items[sender].queue_free()
+## takes sender and recipients
+## removes sender from list of infected
+## and stops any running timers for recipients
+func _on_correct_answer(sender: String, recs: PackedStringArray) -> void:
+	_panel_closed(sender)
+	# check if valid sender
+	if sender in infected:
+		infected.erase(sender)
+		infection_items[sender].free()
+		infection_items.erase(sender)
+		for rec in recs:
+			if rec in infection_timers:
+				infection_timers[rec].stop()
+				infection_timers.erase(rec)
+	else:
+		# window was NOT closed oh no
+		print("what the heck")
+
+## Makes item inaccessible
+## makes timer for next email from same sender
+## and guarantees conversion of recipients
+func _on_wrong_answer(sender: String) -> void:
+	_panel_closed(sender)
+	# remove current email item
+	infection_items[sender].free()
 	infection_items.erase(sender)
+	# set timer for next email from same sender
+	make_infection_timers([sender])
+	# leave other timers running for guaranteed conversion
 
 func _on_close_requested() -> void:
 	visible = false
+
+func _panel_closed(sender: String) -> void:
+	# check first
+	if sender in open:
+		# remove panel
+		var temp = open[sender]
+		open.erase(sender)
+		temp.queue_free()

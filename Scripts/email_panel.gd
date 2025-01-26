@@ -6,8 +6,9 @@ var sender: String
 var content: String
 var correct: UserTopics.Response
 
-signal correct_answer
-signal wrong_answer
+signal correct_answer(sender : String, victims : PackedStringArray)
+signal wrong_answer(sender : String)
+signal closed(sender : String)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,17 +22,21 @@ func _ready() -> void:
 
 
 func _on_close_requested() -> void:
-	queue_free()
-
-# LINK CORRECT BUTTON TO EMIT CORRECT SIGNAL
-# AND WRONG BUTTON TO EMIT WRONG SIGNAL
-# DISABLE BUTTONS AFTER CHOICE IS MADE
+	closed.emit(sender)
+	queue_free() #unless waiting
 
 
 func _on_button_pressed(button: String) -> void:
+	# DISABLES BUTTONS TO PREVENT SPAM CLICKS
+	$"%ButtonValid".disabled = true
+	$"%ButtonUnsub".disabled = true
+	$"%ButtonMisinfo".disabled = true
+	# await if choice not "valid" for sending
+	# info animation
+	# CHECK ANSWER
 	if button == "valid" and correct == UserTopics.Response.VALID or \
 	button == "unsub" and correct == UserTopics.Response.UNSUBSTANTIATED or \
 	button == "misinfo" and correct == UserTopics.Response.MISINFO:
-		correct_answer.emit()
+		correct_answer.emit(sender, recipients)
 	else:
-		wrong_answer.emit()
+		wrong_answer.emit(sender)

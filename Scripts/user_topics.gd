@@ -21,7 +21,7 @@ const TOPIC_TO_STRING = {
 # RESPONSES SHOULD BE INDEPENDENT OF CONTENT
 # CONTENT SHOULD BE DEPENDENT ON SUBTOPIC
 # NOTE(hinchliff): Subject being part of or independent of body subject for debate
-
+# AN: could make subject a key for different bodies
 const USER_TOPICS = {
 	Parts.GREET: ["hello friend", "hey everyone", "hi guys", "whassup y'all"],
 	Parts.TOPIC: {
