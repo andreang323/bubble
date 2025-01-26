@@ -1,10 +1,10 @@
-extends Window
+extends Control
 
 @export var infection_time = 5.0
 @export var infection_variance = 3.0
 
 var email_panel = preload("res://email_panel.tscn")
-@onready var email_tree = $Emails
+@onready var email_tree = $Window/Emails
 var root: TreeItem
 var topic: UserTopics.Topics
 # tracks total users
@@ -41,7 +41,7 @@ func make_infection_timers(targets: PackedStringArray) -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic]
+	$Window.title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic]
 	root = email_tree.create_item()
 	var start_vector = Email.new(DummyEmailAddr.make_email(), topic)
 	infected[start_vector.sender] = start_vector
@@ -96,12 +96,13 @@ func _on_correct_answer(sender: String, recs: PackedStringArray) -> void:
 				infection_timers.erase(rec)
 	else:
 		# window was NOT closed oh no
-		print("what the heck")
+		printerr("what the heck")
 
 ## Makes item inaccessible
 ## makes timer for next email from same sender
 ## and guarantees conversion of recipients
 func _on_wrong_answer(sender: String) -> void:
+	$%WrongAnswer.show()
 	_panel_closed(sender)
 	# remove current email item
 	infection_items[sender].free()
@@ -123,4 +124,4 @@ func _panel_closed(sender: String) -> void:
 		temp.queue_free()
 
 func _update_title() -> void:
-	title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic] + " (" + str(len(infection_items)) + ")"
+	$Window.title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic] + " (" + str(len(infection_items)) + ")"

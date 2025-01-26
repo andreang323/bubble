@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://d3x703oo7akh2"]
+[gd_scene load_steps=4 format=3 uid="uid://d3x703oo7akh2"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yh1l6"]
 [ext_resource type="Script" path="res://Scripts/populate_emails.gd" id="2_vhns5"]
+[ext_resource type="Script" path="res://wrong_answer_popup.gd" id="3_ie8ar"]
 
-[node name="Window" type="Window"]
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_yh1l6")
+script = ExtResource("2_vhns5")
+
+[node name="Window" type="Window" parent="."]
 mode = 4
 title = "Inbox"
 position = Vector2i(0, 22)
 size = Vector2i(640, 480)
 min_size = Vector2i(400, 0)
 theme = ExtResource("1_yh1l6")
-script = ExtResource("2_vhns5")
 
-[node name="Emails" type="Tree" parent="."]
+[node name="Emails" type="Tree" parent="Window"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,5 +32,46 @@ columns = 2
 hide_root = true
 select_mode = 1
 
-[connection signal="close_requested" from="." to="." method="_on_close_requested"]
-[connection signal="item_selected" from="Emails" to="." method="_on_emails_item_selected"]
+[node name="WrongAnswer" type="Popup" parent="."]
+unique_name_in_owner = true
+title = "Wrong Report"
+initial_position = 2
+size = Vector2i(684, 111)
+borderless = false
+script = ExtResource("3_ie8ar")
+
+[node name="PanelContainer" type="PanelContainer" parent="WrongAnswer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WrongAnswer/PanelContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="WrongAnswer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="WrongAnswer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WrongAnswer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Management has detected an incorrect report according to our cutting-edge AI systems.
+This will be noted in your next quarterly review."
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="WrongAnswer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "OK"
+
+[connection signal="close_requested" from="Window" to="." method="_on_close_requested"]
+[connection signal="item_selected" from="Window/Emails" to="." method="_on_emails_item_selected"]
+[connection signal="close_requested" from="WrongAnswer" to="WrongAnswer" method="_on_close_requested"]
+[connection signal="pressed" from="WrongAnswer/PanelContainer/VBoxContainer/Button" to="WrongAnswer" method="_on_button_pressed"]
