@@ -36,12 +36,13 @@ layout_mode = 2
 [node name="SenderField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
 layout_mode = 2
 
-[node name="from" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
+[node name="FromLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "From:"
 
-[node name="sender" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
+[node name="Sender" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -51,13 +52,14 @@ autowrap_mode = 3
 [node name="RecipientsField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
 layout_mode = 2
 
-[node name="to" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
+[node name="ToLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 size_flags_vertical = 0
 text = "To:"
 
-[node name="recipients" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
+[node name="Recipients" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -66,12 +68,13 @@ autowrap_mode = 3
 [node name="SubjectField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
 layout_mode = 2
 
-[node name="Subject" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
+[node name="SubjectLabel" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
 custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Subject:"
 
-[node name="subject" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
+[node name="Subject" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -105,7 +108,8 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="content" type="Label" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer/MarginContainer"]
+[node name="Content" type="Label" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer/MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 100)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -117,17 +121,20 @@ autowrap_mode = 3
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonValid" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "RESPOND 1"
 
-[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonUnsub" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "RESPOND 2"
 
-[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="ButtonMisinfo" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "RESPOND 3"

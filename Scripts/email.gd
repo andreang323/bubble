@@ -11,16 +11,16 @@ var content: String
 var signoff: String
 
 # Called when the node enters the scene tree for the first time.
-func _init(sender: String, topic) -> void:
+func _init(sender: String, topic: Topics) -> void:
 	self.topic = topic
-	generateContent(sender)
-	#print(greets + content + signoff)
+	self.sender = sender
+	generateContent()
 
-func generateContent(sender: String):
+func generateContent():
 	for n in randi_range(1, 3):
 		recipients.append(DummyEmailAddr.make_email())
-	self.sender = sender
-	subject = USER_TOPICS[topic][Parts.SUBJECT].pick_random()
-	greet = USER_TOPICS[topic][Parts.GREET].pick_random()
-	content = USER_TOPICS[topic][Parts.CONTENT].pick_random()[Content.MESSAGE]
-	signoff = USER_TOPICS[topic][Parts.SIGNOFF].pick_random()
+	greet = USER_TOPICS[Parts.GREET].pick_random()
+	var body = USER_TOPICS[Parts.TOPIC][topic].pick_random()
+	subject = body[Content.SUBJECT]
+	content = body[Content.MESSAGE]
+	signoff = USER_TOPICS[Parts.SIGNOFF].pick_random()
