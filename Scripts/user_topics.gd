@@ -94,7 +94,7 @@ const USER_TOPICS = {
 				Content.SUBJECT: "Pay us Money and We'll Find Your Dog",
 				Content.MESSAGE: "Give us money and we'll find your dog. Remember that if you don't we'll \"unfind\" it for you.",
 				Content.ANSWER: Response.SCAM,
-			}
+			},
 		],
 	},
 	Parts.SIGNOFF: ["peace out", "you're's sincerely", "bye bye", "thank u"],
