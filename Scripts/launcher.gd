@@ -30,18 +30,18 @@ func _on_start_pressed() -> void:
 	dogtop = DogTopic.instantiate()
 	dogtop.topic = UserTopics.Topics.DOG
 	dogtop.visible = false
-	dogtop.infection_time = 30
+	dogtop.infection_time = 60
 	dogtop.infection_variance = 5
 	robtop = RobotTopic.instantiate()
 	robtop.topic = UserTopics.Topics.ROBOTS
 	robtop.visible = false
-	robtop.infection_time = 20
-	robtop.infection_variance = 1
+	robtop.infection_time = 40
+	robtop.infection_variance = 2
 	cultop = CultTopic.instantiate()
 	cultop.topic = UserTopics.Topics.CULT
 	cultop.visible = false
-	cultop.infection_time = 15
-	cultop.infection_variance = 2
+	cultop.infection_time = 30
+	cultop.infection_variance = 3
 	_on_refresh_timer_timeout()
 	add_child(dogtop)
 	add_child(robtop)

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://5iunlah25ys3"]
+[gd_scene load_steps=7 format=3 uid="uid://5iunlah25ys3"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yt31p"]
 [ext_resource type="Texture2D" uid="uid://cqy3cbucyoosa" path="res://Images/wallpaper.png" id="2_np3an"]
 [ext_resource type="PackedScene" uid="uid://ci2dkajgn7g8r" path="res://launcher.tscn" id="3_6ufeh"]
 [ext_resource type="Script" path="res://Scripts/ambiance.gd" id="4_fmsr6"]
 [ext_resource type="AudioStream" uid="uid://bn4k76wvg7kwd" path="res://Sounds/computer-hard-drive-access-fan-click-62422.mp3" id="5_n3gy8"]
+[ext_resource type="AudioStream" uid="uid://dh6wkinx273fb" path="res://Sounds/bootup.mp3" id="6_64teb"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -40,6 +41,11 @@ script = ExtResource("4_fmsr6")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Ambiance"]
 stream = ExtResource("5_n3gy8")
+volume_db = -20.0
+autoplay = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_64teb")
 autoplay = true
 
 [connection signal="gui_input" from="Ambiance" to="Ambiance" method="_on_gui_input"]

@@ -83,9 +83,9 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Welcome to the Bubble Email Moderator Client!
 
-Your job is to help users who seem to be stuck in filter bubbles! By identifying whether the information in a user's email is valid, unsubstantiated, or misinformation, our program will send the correct information to the user.
+Your job is to help users who seem to be stuck in filter bubbles! By identifying whether the information in a user's email is valid, a scam, or misinformation, our program will send the correct information to the user.
 
-But be warned: recipients of these emails are also at risk of becoming trapped in a bubble, and the longer you take, the more people will be affected. Your shift ends when we detect that more than 100 users have become trapped in a bubble, or if you successfully resolve all cases. Good luck!"
+But be warned: recipients of these emails are also at risk of becoming trapped in a bubble, and the longer you take, the more people will be affected. Your shift ends when we detect that more than 100 users have become trapped in a bubble. Good luck!"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

@@ -20,6 +20,8 @@ const letter_icon = preload("res://Images/letter.png")
 
 ## takes email object and creates item in tree
 func make_email_item(gotmail):
+	if ! $New.playing:
+		$New.play()
 	var item = email_tree.create_item(root)
 	item.set_icon(0, letter_icon)
 	item.set_text(0, gotmail.subject)
@@ -43,10 +45,11 @@ func make_infection_timers(targets: PackedStringArray) -> void:
 func _ready() -> void:
 	$Window.title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic]
 	root = email_tree.create_item()
-	var start_vector = Email.new(DummyEmailAddr.make_email(), topic)
-	infected[start_vector.sender] = start_vector
-	make_email_item(start_vector)
-	make_infection_timers(start_vector.recipients)
+	for i in range(0, randi_range(4, 7)):
+		var start_vector = Email.new(DummyEmailAddr.make_email(), topic)
+		infected[start_vector.sender] = start_vector
+		make_email_item(start_vector)
+		make_infection_timers(start_vector.recipients)
 
 ## create new email from recipient upon timeout
 func _on_timer_timeout(rec: String) -> void:
@@ -84,6 +87,7 @@ func _on_emails_item_selected() -> void:
 ## removes sender from list of infected
 ## and stops any running timers for recipients
 func _on_correct_answer(sender: String, recs: PackedStringArray) -> void:
+	$Good.play()
 	_panel_closed(sender)
 	# check if valid sender
 	if sender in infected:
@@ -103,6 +107,7 @@ func _on_correct_answer(sender: String, recs: PackedStringArray) -> void:
 ## makes timer for next email from same sender
 ## and guarantees conversion of recipients
 func _on_wrong_answer(sender: String) -> void:
+	$WrongAnswer/Bad.play()
 	$%WrongAnswer.show()
 	_panel_closed(sender)
 	# remove current email item
