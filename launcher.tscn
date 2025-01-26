@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://ci2dkajgn7g8r"]
+[gd_scene load_steps=7 format=3 uid="uid://ci2dkajgn7g8r"]
 
 [ext_resource type="Texture2D" uid="uid://bu0ksbo580q4u" path="res://Images/bubble.png" id="1_86l40"]
 [ext_resource type="Script" path="res://scripts/launcher.gd" id="1_kl71i"]
+[ext_resource type="Texture2D" uid="uid://dwn6oavh7ehrt" path="res://Images/bubbleapp.png" id="2_hahhd"]
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="3_gblfn"]
 [ext_resource type="Texture2D" uid="uid://dgdhox5hooehm" path="res://Images/sky.png" id="4_ld8su"]
+[ext_resource type="Texture2D" uid="uid://ds67q7a6hfn0j" path="res://Images/hub_bg.png" id="5_76wtv"]
 
-[node name="Control" type="Control"]
+[node name="Launcher" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,15 +18,15 @@ script = ExtResource("1_kl71i")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 150.0
-offset_bottom = 153.0
-texture = ExtResource("1_86l40")
+offset_right = 100.0
+offset_bottom = 100.0
+texture = ExtResource("2_hahhd")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="Window" type="Window" parent="."]
 title = "Bubble Email Moderator Client"
-position = Vector2i(50, 200)
+initial_position = 4
 size = Vector2i(1000, 300)
 min_size = Vector2i(100, 0)
 theme = ExtResource("3_gblfn")
@@ -87,13 +89,99 @@ one_shot = true
 
 [node name="Hub" type="Window" parent="."]
 initial_position = 4
+size = Vector2i(1000, 300)
 theme = ExtResource("3_gblfn")
 
 [node name="TextureRect" type="TextureRect" parent="Hub"]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_76wtv")
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hub/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Hub/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Double-click on a topic to open up the list of affected users."
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Hub/TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dog" type="VBoxContainer" parent="Hub/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="DogBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 texture = ExtResource("1_86l40")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "That Dog"
+horizontal_alignment = 1
+
+[node name="Robots" type="VBoxContainer" parent="Hub/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="RobotBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("1_86l40")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Robot Uprising"
+horizontal_alignment = 1
+
+[node name="Cult" type="VBoxContainer" parent="Hub/TextureRect/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+alignment = 1
+
+[node name="CultBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("1_86l40")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Bubble Cult"
+horizontal_alignment = 1
 
 [connection signal="gui_input" from="TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="pressed" from="Window/TextureRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog/DogBubble" to="." method="_on_dog_bubble_gui_input"]
+[connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots/RobotBubble" to="." method="_on_robot_bubble_gui_input"]
+[connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult/CultBubble" to="." method="_on_cult_bubble_gui_input"]

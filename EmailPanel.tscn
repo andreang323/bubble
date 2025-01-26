@@ -1,11 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://buwg63458wboe"]
+[gd_scene load_steps=3 format=3 uid="uid://bmk7kluu1rqqq"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_6ke6i"]
 [ext_resource type="Script" path="res://EmailPanel.gd" id="2_573hf"]
 
 [node name="Email" type="Window"]
 title = "subject - sender"
-position = Vector2i(3, 21)
+position = Vector2i(3, 22)
 size = Vector2i(480, 480)
 theme = ExtResource("1_6ke6i")
 script = ExtResource("2_573hf")
