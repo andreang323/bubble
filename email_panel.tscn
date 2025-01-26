@@ -125,18 +125,21 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "RESPOND 1"
+text = "Valid"
 
 [node name="ButtonUnsub" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "RESPOND 2"
+text = "Unsubstantiated"
 
 [node name="ButtonMisinfo" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-text = "RESPOND 3"
+text = "Misinformation"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonValid" to="." method="_on_button_pressed" binds= ["valid"]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonUnsub" to="." method="_on_button_pressed" binds= ["unsub"]]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonMisinfo" to="." method="_on_button_pressed" binds= ["misinfo"]]

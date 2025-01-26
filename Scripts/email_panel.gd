@@ -4,9 +4,10 @@ var subject: String
 var recipients: PackedStringArray
 var sender: String
 var content: String
-var responses: PackedStringArray
+var correct: UserTopics.Response
 
-@onready var buttons = [$"%ButtonValid", $"%ButtonUnsub", $"%ButtonMisinfo"]
+signal correct_answer
+signal wrong_answer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,8 +18,6 @@ func _ready() -> void:
 	$"%Recipients".text = ", ".join(recipients)
 	$"%Sender".text = sender
 	$"%Content".text = content
-	for i in range(0, len(responses)):
-		buttons[i].text = responses[i]
 
 
 func _on_close_requested() -> void:
@@ -27,3 +26,12 @@ func _on_close_requested() -> void:
 # LINK CORRECT BUTTON TO EMIT CORRECT SIGNAL
 # AND WRONG BUTTON TO EMIT WRONG SIGNAL
 # DISABLE BUTTONS AFTER CHOICE IS MADE
+
+
+func _on_button_pressed(button: String) -> void:
+	if button == "valid" and correct == UserTopics.Response.VALID or \
+	button == "unsub" and correct == UserTopics.Response.UNSUBSTANTIATED or \
+	button == "misinfo" and correct == UserTopics.Response.MISINFO:
+		correct_answer.emit()
+	else:
+		wrong_answer.emit()

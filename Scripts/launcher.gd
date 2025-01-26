@@ -22,13 +22,13 @@ func _on_start_pressed() -> void:
 	$Window.hide()
 	$Hub.show()
 	dogtop = DogTopic.instantiate()
-	dogtop.get_child(0).topic = 2
+	dogtop.topic = UserTopics.Topics.DOG
 	dogtop.visible = false
 	robtop = RobotTopic.instantiate()
-	robtop.get_child(0).topic = 1
+	robtop.topic = UserTopics.Topics.ROBOTS
 	robtop.visible = false
 	cultop = CultTopic.instantiate()
-	cultop.get_child(0).topic = 0
+	cultop.topic = UserTopics.Topics.CULT
 	cultop.visible = false
 	add_child(dogtop)
 	add_child(robtop)
