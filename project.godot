@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="Bubble"
+run/main_scene="res://topic.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DummyEmailAddr="*res://dummy_email_addr.gd"
 
 [rendering]
 

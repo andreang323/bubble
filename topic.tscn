@@ -6,7 +6,7 @@
 [node name="Window" type="Window"]
 mode = 4
 title = "Inbox"
-position = Vector2i(3, 21)
+position = Vector2i(3, 22)
 size = Vector2i(640, 480)
 theme = ExtResource("1_yh1l6")
 
