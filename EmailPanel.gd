@@ -14,15 +14,11 @@ var content: String
 func _ready() -> void:
 	position.x = randi_range(0, 20) + 3
 	position.y = randi_range(0, 20) + 21
-	$PanelContainer/VBoxContainer/subject.text = subject
-	$PanelContainer/VBoxContainer/recipients.text = ", ".join(recipients)
-	$PanelContainer/VBoxContainer/sender.text = sender
-	$PanelContainer/VBoxContainer/content.text = content
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	title = subject + "-" + sender
+	$PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField/subject.text = subject
+	$PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField/recipients.text = ", ".join(recipients)
+	$PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField/sender.text = sender
+	$PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer/MarginContainer/content.text = content
 
 
 func _on_close_requested() -> void:

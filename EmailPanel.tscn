@@ -1,12 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmk7kluu1rqqq"]
+[gd_scene load_steps=4 format=3 uid="uid://bmk7kluu1rqqq"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_6ke6i"]
 [ext_resource type="Script" path="res://EmailPanel.gd" id="2_573hf"]
+[ext_resource type="Texture2D" uid="uid://ddemdfibjshgw" path="res://Images/fill.png" id="3_bb3v0"]
 
 [node name="Email" type="Window"]
 title = "subject - sender"
 position = Vector2i(3, 22)
 size = Vector2i(480, 480)
+min_size = Vector2i(480, 150)
+keep_title_visible = true
 theme = ExtResource("1_6ke6i")
 script = ExtResource("2_573hf")
 
@@ -20,23 +23,113 @@ grow_vertical = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="subject" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "subject"
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
 
-[node name="recipients" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="Metadata" type="VBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="SenderField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
+layout_mode = 2
+
+[node name="from" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "From:"
+
+[node name="sender" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SenderField"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
+size_flags_horizontal = 3
+text = "fish@fish.net"
 autowrap_mode = 3
 
-[node name="sender" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="RecipientsField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
 layout_mode = 2
-text = "fish@fish.net"
 
-[node name="content" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="to" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
+custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
+size_flags_vertical = 0
+text = "To:"
+
+[node name="recipients" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/RecipientsField"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+autowrap_mode = 3
+
+[node name="SubjectField" type="HBoxContainer" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata"]
+layout_mode = 2
+
+[node name="Subject" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Subject:"
+
+[node name="subject" type="Label" parent="PanelContainer/VBoxContainer/MarginContainer/Metadata/SubjectField"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "subject"
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("3_bb3v0")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="content" type="Label" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer/MarginContainer"]
+custom_minimum_size = Vector2(20, 100)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 text = "ASFDA
 ASDF"
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESPOND 1"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESPOND 2"
+
+[node name="Button3" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "RESPOND 3"
 
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]

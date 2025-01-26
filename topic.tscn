@@ -8,6 +8,7 @@ mode = 4
 title = "Inbox"
 position = Vector2i(3, 22)
 size = Vector2i(640, 480)
+min_size = Vector2i(300, 0)
 theme = ExtResource("1_yh1l6")
 
 [node name="Emails" type="Tree" parent="."]
