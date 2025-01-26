@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bmk7kluu1rqqq"]
+[gd_scene load_steps=5 format=3 uid="uid://bmk7kluu1rqqq"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_y1eer"]
 [ext_resource type="Script" path="res://Scripts/email_panel.gd" id="2_8r8xd"]
 [ext_resource type="Texture2D" uid="uid://ddemdfibjshgw" path="res://Images/fill.png" id="3_4nokx"]
+[ext_resource type="Texture2D" uid="uid://ce0hrh7jpghfp" path="res://Images/loading_animation/003.png" id="4_mok8f"]
 
 [node name="Email" type="Window"]
 title = "subject - sender"
@@ -91,16 +92,13 @@ patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/NinePatchRect"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/NinePatchRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer"]
-layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
@@ -108,7 +106,10 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Content" type="Label" parent="PanelContainer/VBoxContainer/NinePatchRect/ScrollContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBoxContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Content" type="Label" parent="PanelContainer/VBoxContainer/NinePatchRect/MarginContainer/ScrollContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(20, 100)
 layout_mode = 2
@@ -139,7 +140,49 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Misinformation"
 
+[node name="Report" type="Window" parent="."]
+title = "Sending Report"
+position = Vector2i(326, 224)
+size = Vector2i(250, 100)
+visible = false
+unresizable = true
+
+[node name="PanelContainer" type="PanelContainer" parent="Report"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Report/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Report/PanelContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LoadingAnim" type="TextureRect" parent="Report/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_mok8f")
+stretch_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="Report/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+step = 1.0
+
+[node name="Timer" type="Timer" parent="Report"]
+one_shot = true
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonValid" to="." method="_on_button_pressed" binds= ["valid"]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonUnsub" to="." method="_on_button_pressed" binds= ["unsub"]]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/ButtonMisinfo" to="." method="_on_button_pressed" binds= ["misinfo"]]
+[connection signal="timeout" from="Report/Timer" to="." method="_on_timer_timeout"]

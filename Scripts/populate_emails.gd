@@ -25,6 +25,7 @@ func make_email_item(gotmail):
 	item.set_text(0, gotmail.subject)
 	item.set_text(1, gotmail.sender)
 	infection_items[gotmail.sender] = item
+	_update_title()
 
 ## takes list of targets and makes timer for each target
 ## also populates list with reference to timers for erasing
@@ -88,6 +89,7 @@ func _on_correct_answer(sender: String, recs: PackedStringArray) -> void:
 		infected.erase(sender)
 		infection_items[sender].free()
 		infection_items.erase(sender)
+		_update_title()
 		for rec in recs:
 			if rec in infection_timers:
 				infection_timers[rec].stop()
@@ -104,6 +106,7 @@ func _on_wrong_answer(sender: String) -> void:
 	# remove current email item
 	infection_items[sender].free()
 	infection_items.erase(sender)
+	_update_title()
 	# set timer for next email from same sender
 	make_infection_timers([sender])
 	# leave other timers running for guaranteed conversion
@@ -118,3 +121,6 @@ func _panel_closed(sender: String) -> void:
 		var temp = open[sender]
 		open.erase(sender)
 		temp.queue_free()
+
+func _update_title() -> void:
+	title = "Topic—" + UserTopics.TOPIC_TO_STRING[topic] + " (" + str(len(infection_items)) + ")"

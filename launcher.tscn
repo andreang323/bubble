@@ -142,7 +142,7 @@ size_flags_horizontal = 6
 alignment = 1
 
 [node name="DogBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -162,7 +162,7 @@ size_flags_horizontal = 6
 alignment = 1
 
 [node name="RobotBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -182,7 +182,7 @@ size_flags_horizontal = 6
 alignment = 1
 
 [node name="CultBubble" type="TextureRect" parent="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult"]
-custom_minimum_size = Vector2(100, 100)
+custom_minimum_size = Vector2(25, 25)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -201,7 +201,10 @@ wait_time = 0.1
 one_shot = true
 
 [connection signal="gui_input" from="VBoxContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
+[connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]
 [connection signal="pressed" from="Window/TextureRect/VBoxContainer/HBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Window/TextureRect/VBoxContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="close_requested" from="Hub" to="." method="_on_hub_close_requested"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Dog/DogBubble" to="." method="_on_dog_bubble_gui_input"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Robots/RobotBubble" to="." method="_on_robot_bubble_gui_input"]
 [connection signal="gui_input" from="Hub/TextureRect/VBoxContainer/HBoxContainer/Cult/CultBubble" to="." method="_on_cult_bubble_gui_input"]
