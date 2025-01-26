@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yt31p"]
 [ext_resource type="Texture2D" uid="uid://cqy3cbucyoosa" path="res://Images/wallpaper.png" id="2_np3an"]
-[ext_resource type="Script" path="res://desktop.gd" id="2_ywg3s"]
 [ext_resource type="PackedScene" uid="uid://ci2dkajgn7g8r" path="res://launcher.tscn" id="3_6ufeh"]
-[ext_resource type="AudioStream" uid="uid://dm2uy1u0sk1av" path="res://Sounds/mouse-click-290204.mp3" id="5_j1i3d"]
+[ext_resource type="Script" path="res://Scripts/ambiance.gd" id="4_fmsr6"]
+[ext_resource type="AudioStream" uid="uid://bn4k76wvg7kwd" path="res://Sounds/computer-hard-drive-access-fan-click-62422.mp3" id="5_n3gy8"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -14,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_yt31p")
-script = ExtResource("2_ywg3s")
 
 [node name="DesktopBG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -29,5 +28,18 @@ stretch_mode = 1
 [node name="Launcher" parent="." instance=ExtResource("3_6ufeh")]
 layout_mode = 1
 
-[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_j1i3d")
+[node name="Ambiance" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_fmsr6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Ambiance"]
+stream = ExtResource("5_n3gy8")
+autoplay = true
+
+[connection signal="gui_input" from="Ambiance" to="Ambiance" method="_on_gui_input"]
