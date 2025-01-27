@@ -10,6 +10,10 @@ var dogtop
 var robtop
 var cultop
 
+signal appopen
+signal appclose
+signal topicstart
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Window.hide()
@@ -17,6 +21,7 @@ func _ready() -> void:
 
 func _on_texture_rect_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.is_double_click():
+		appopen.emit()
 		if !started:
 			$Window.show()
 		else:
@@ -46,24 +51,25 @@ func _on_start_pressed() -> void:
 	add_child(dogtop)
 	add_child(robtop)
 	add_child(cultop)
+	topicstart.emit()
 
 
 func _on_dog_bubble_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.is_double_click():
 		dogtop.show()
-		dogtop.grab_focus()
+		dogtop.get_child(0).grab_focus()
 
 
 func _on_cult_bubble_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.is_double_click():
 		cultop.show()
-		cultop.grab_focus()
+		cultop.get_child(0).grab_focus()
 
 
 func _on_robot_bubble_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.is_pressed() and event.is_double_click():
 		robtop.show()
-		robtop.grab_focus()
+		robtop.get_child(0).grab_focus()
 
 
 # GET TOPIC CURRENT SIZE, RESIZE BUBBLES
@@ -94,7 +100,27 @@ func _on_hub_close_requested() -> void:
 
 func _on_window_close_requested() -> void:
 	$Window.hide()
+	appclose.emit()
 
 
 func _on_quit_pressed() -> void:
 	$Window.hide()
+
+
+func _on_hub_button_pressed() -> void:
+	if $Window.visible:
+		$Window.grab_focus()
+	elif $Hub.visible:
+		$Hub.grab_focus()
+
+
+func _on_dog_button_pressed() -> void:
+	dogtop.get_child(0).grab_focus()
+
+
+func _on_robot_button_pressed() -> void:
+	robtop.get_child(0).grab_focus()
+
+
+func _on_cult_button_pressed() -> void:
+	cultop.get_child(0).grab_focus()
