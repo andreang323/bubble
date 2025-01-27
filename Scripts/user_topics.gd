@@ -123,7 +123,6 @@ const USER_TOPICS = {
 				Content.MESSAGE: "Are you feeling at threat from robots? We have just the plan for you! In only 100 payments of the low price of $15 we can make you super secure!",
 				Content.ANSWER: Response.VALID,
 			},
-			},
 			{
 				Content.SUBJECT: "BREAKING NEWS: ROBOTS TAKE OVER LAS VEGAS",
 				Content.MESSAGE: "In a stunning turn of events, the robots recently brought to Las Vegas for a conference have spontaneously declared sovereignty over the city. Attendees of the conference have reported feeling unnerved and uncomfortable, knowing that these robots hold supreme power over them. We must take back control from these robots and reclaim LAS VEGAS!!!!!!!",
@@ -191,7 +190,6 @@ const USER_TOPICS = {
 				Content.SUBJECT: "Check Out This Cute Cat!",
 				Content.MESSAGE: "Syke it's actually a dog LMAO",
 				Content.ANSWER: Response.MISINFO,
-			},
 			},
 			{
 				Content.SUBJECT: "Pay us Money and We'll Find Your Dog",
