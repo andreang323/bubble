@@ -85,9 +85,7 @@ func _update_bubbles():
 		print('gameover')
 		# put BSOD or something
 		get_tree().paused = true
-		$Window.visible = false
-		$Hub.visible = false
-		$"%BSOD".visible = true
+		get_tree().change_scene_to_file("res://bsod.tscn")
 
 func _on_refresh_timer_timeout() -> void:
 	_update_bubbles()

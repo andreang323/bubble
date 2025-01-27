@@ -52,8 +52,13 @@ const USER_TOPICS = {
 				Content.ANSWER: Response.SCAM
 			},
 			{
-				Content.SUBJECT: "Hot Dads in Your Area",
+				Content.SUBJECT: "Hot Cult Dads in Your Area",
 				Content.MESSAGE: "Click Here! http://moneysteal.er/",
+				Content.ANSWER: Response.SCAM
+			},
+			{
+				Content.SUBJECT: "A New Path Forward",
+				Content.MESSAGE: "Do you ever feel lost? Lonely? Without purpose in an uncaring world? Allow us to provide purpose for you, with THE CULT!",
 				Content.ANSWER: Response.SCAM
 			},
 			{
@@ -109,6 +114,17 @@ const USER_TOPICS = {
 				Content.ANSWER: Response.MISINFO,
 			},
 			{
+				Content.SUBJECT: "Literarlly Terminator is Now",
+				Content.MESSAGE: "Remember that one show that is like Miku Terminator it's like that",
+				Content.ANSWER: Response.MISINFO,
+			},
+			{
+				Content.SUBJECT: "DEAL on Robot Insurance",
+				Content.MESSAGE: "Are you feeling at threat from robots? We have just the plan for you! In only 100 payments of the low price of $15 we can make you super secure!",
+				Content.ANSWER: Response.VALID,
+			},
+			},
+			{
 				Content.SUBJECT: "BREAKING NEWS: ROBOTS TAKE OVER LAS VEGAS",
 				Content.MESSAGE: "In a stunning turn of events, the robots recently brought to Las Vegas for a conference have spontaneously declared sovereignty over the city. Attendees of the conference have reported feeling unnerved and uncomfortable, knowing that these robots hold supreme power over them. We must take back control from these robots and reclaim LAS VEGAS!!!!!!!",
 				Content.ANSWER: Response.MISINFO,
@@ -160,6 +176,22 @@ const USER_TOPICS = {
 				Content.SUBJECT: "Pay us Money and We'll Find Your Dog",
 				Content.MESSAGE: "Give us money and we'll find your dog. Remember that if you don't we'll \"unfind\" it for you.",
 				Content.ANSWER: Response.SCAM,
+			},
+			{
+				Content.SUBJECT: "Medidations on doggism",
+				Content.MESSAGE: "What even is a dog anyway.",
+				Content.ANSWER: Response.MISINFO,
+			},
+			{
+				Content.SUBJECT: "Bark",
+				Content.MESSAGE: "Bark bark. Bark bark bark. Bark.",
+				Content.ANSWER: Response.VALID,
+			},
+			{
+				Content.SUBJECT: "Check Out This Cute Cat!",
+				Content.MESSAGE: "Syke it's actually a dog LMAO",
+				Content.ANSWER: Response.MISINFO,
+			},
 			},
 			{
 				Content.SUBJECT: "Pay us Money and We'll Find Your Dog",

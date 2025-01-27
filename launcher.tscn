@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ci2dkajgn7g8r"]
+[gd_scene load_steps=7 format=3 uid="uid://ci2dkajgn7g8r"]
 
 [ext_resource type="Texture2D" uid="uid://bu0ksbo580q4u" path="res://Images/bubble.png" id="1_86l40"]
 [ext_resource type="Script" path="res://Scripts/launcher.gd" id="1_kl71i"]
@@ -6,7 +6,6 @@
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="3_gblfn"]
 [ext_resource type="Texture2D" uid="uid://dgdhox5hooehm" path="res://Images/sky.png" id="4_ld8su"]
 [ext_resource type="Texture2D" uid="uid://ds67q7a6hfn0j" path="res://Images/hub_bg.png" id="5_76wtv"]
-[ext_resource type="Texture2D" uid="uid://dqfyqhpq0abaa" path="res://Images/ConCon_bsod.png" id="7_lf5a5"]
 
 [node name="Launcher" type="Control"]
 layout_mode = 3
@@ -200,17 +199,6 @@ horizontal_alignment = 1
 [node name="RefreshTimer" type="Timer" parent="Hub"]
 wait_time = 0.1
 one_shot = true
-
-[node name="BSOD" type="TextureRect" parent="."]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("7_lf5a5")
 
 [connection signal="gui_input" from="VBoxContainer/TextureRect" to="." method="_on_texture_rect_gui_input"]
 [connection signal="close_requested" from="Window" to="." method="_on_window_close_requested"]

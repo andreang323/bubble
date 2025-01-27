@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3x703oo7akh2"]
+[gd_scene load_steps=8 format=3 uid="uid://d3x703oo7akh2"]
 
 [ext_resource type="Theme" uid="uid://bi54ign8ggomc" path="res://Themes/Classic95/Classic95.tres" id="1_yh1l6"]
 [ext_resource type="Script" path="res://Scripts/populate_emails.gd" id="2_vhns5"]
 [ext_resource type="Script" path="res://Scripts/wrong_answer_popup.gd" id="3_ie8ar"]
 [ext_resource type="AudioStream" uid="uid://his3233bi0pf" path="res://Sounds/bad.mp3" id="4_bx8tr"]
+[ext_resource type="Texture2D" uid="uid://cxamg4p6b2vyu" path="res://Images/warning.png" id="4_keay1"]
 [ext_resource type="AudioStream" uid="uid://cx43etjvb3tdi" path="res://Sounds/good.mp3" id="5_doqhm"]
 [ext_resource type="AudioStream" uid="uid://b8ehw7832a8i5" path="res://Sounds/newmessage.mp3" id="6_c0m6o"]
 
@@ -39,7 +40,7 @@ select_mode = 1
 unique_name_in_owner = true
 title = "Wrong Report"
 initial_position = 2
-size = Vector2i(684, 111)
+size = Vector2i(733, 111)
 borderless = false
 script = ExtResource("3_ie8ar")
 
@@ -50,17 +51,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="WrongAnswer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WrongAnswer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WrongAnswer/PanelContainer/MarginContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WrongAnswer/PanelContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="WrongAnswer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="WrongAnswer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="WrongAnswer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_keay1")
+expand_mode = 5
 
-[node name="Label" type="Label" parent="WrongAnswer/PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="WrongAnswer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -68,7 +75,7 @@ text = "Management has detected an incorrect report according to our cutting-edg
 This will be noted in your next quarterly review."
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="WrongAnswer/PanelContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="WrongAnswer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -87,4 +94,4 @@ stream = ExtResource("6_c0m6o")
 [connection signal="close_requested" from="Window" to="." method="_on_close_requested"]
 [connection signal="item_selected" from="Window/Emails" to="." method="_on_emails_item_selected"]
 [connection signal="close_requested" from="WrongAnswer" to="WrongAnswer" method="_on_close_requested"]
-[connection signal="pressed" from="WrongAnswer/PanelContainer/VBoxContainer/Button" to="WrongAnswer" method="_on_button_pressed"]
+[connection signal="pressed" from="WrongAnswer/PanelContainer/MarginContainer/VBoxContainer/Button" to="WrongAnswer" method="_on_button_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cevvfmxwfnbpa"]
+
+[ext_resource type="Texture2D" uid="uid://dqfyqhpq0abaa" path="res://Images/ConCon_bsod.png" id="1_dpio2"]
+[ext_resource type="Script" path="res://bsod.gd" id="2_syhkk"]
+
+[node name="BSOD" type="TextureRect"]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_dpio2")
+script = ExtResource("2_syhkk")
